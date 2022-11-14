@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pizza dilevery tycoon</title>
+            <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js" target="_blank"></script>
+            <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js" target="_blank"></script>
+            <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js" target="_blank"></script>
+            <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js" crossorigin="anonymous"></script>
+            <script src="./drive.js"></script>
+            <script src="./game.js"></script>
+    </head>
+    <body>
+        <a-scene id="scene" background="color:lightblue" inspector-plugin-recast>
+
+            
+            <a-assets>
+                <a-asset-item id="city" src="./assets/low_poly_city/scene.gltf"></a-asset-item>
+                <a-asset-item id="handle" src="./assets/bike_handle/handle.glb"></a-asset-item>
+                <a-asset-item id="collider" src="./assets/navmesh.gltf"></a-asset-item>
+            </a-assets>
+
+            <!--city scene environment-->
+            <a-entity id="cityScene" gltf-model="#city"  position="10 -2.63 -150" rotation="0 90 0" scale="1 1 1"></a-entity>
+                        
+            <a-box id="wall1" material="height:300;" color="blue" geometry="width:5;height:300;depth:300" position="-100 -100 -150"></a-box>
+            <a-box id="wall1" material="height:300;" color="blue" geometry="width:5;height:300;depth:300" position="100 -100 -150"></a-box>
+            
+            <a-entity id="navigation-mesh" gltf-model="#collider" visible="false" position="0 10 0" nav-mesh></a-entity>
+            
+            
+            <a-entity id="camera-rig" movement-controls="speed: 0.5; constrainToNavMesh: true" position="0 -0.1 5" rotation="0 0 0" drive game="play"> 
+            <a-entity id="camera" camera position="-0.1 -1.1 0" rotation="0 0 0" look-controls="pointerLockEnabled: true">
+                    <a-entity id="first-person-view" gltf-model="#handle" position="0 -0.175 -0.150" rotation="0 180 0"scale="0.001 0.001 0.001"></a-entity>
+
+                <a-entity id="timer" position="-0.1 5 -7.1" text="font: kelsonsans; align: center; width: 10; color: black; value: 00:00"> </a-entity>
+      
+          </a-entity> 
+        </a-entity>
+        </a-scene>
+    </body>
+
+</html>
